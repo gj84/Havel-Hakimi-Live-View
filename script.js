@@ -10,10 +10,10 @@ window.onload = function() {
     var textbox = document.getElementById('sucession');
     textbox.onkeypress = function (e) {
         //remove the class for valid and wrong succession
-        $("#sucession").parent().removeClass("has-error");      
-        $("#sucession").parent().removeClass("has-success");     
+        $("#sucession").parent().removeClass("has-error");
+        $("#sucession").parent().removeClass("has-success");
 
-        if (e.keyCode == 13) {    
+        if (e.keyCode == 13) {
             var input = textbox.value;
             document.getElementById('table').innerHTML = "";
             document.getElementById('cy').innerHTML = "";
@@ -48,10 +48,10 @@ window.onload = function() {
             iel = iel.replace(/ /g,"");
             newiel = parseInt(iel);
             if (!isNaN(newiel)){
-                newArray.push(newiel);    
+                newArray.push(newiel);
             };
         };
-        return newArray;          
+        return newArray;
     };
 
     function stop_condition(array) {
@@ -97,7 +97,6 @@ window.onload = function() {
             return sequence_graphical(alg_operation(sequence));
         }
     }
-
 
     function algorithm(array) {
         // body...
@@ -167,7 +166,6 @@ window.onload = function() {
         table.appendChild(row);
     }
 
-
     function highlight_last_row() {
         var table = document.getElementById("table");
         var trows = table.getElementsByTagName("TR");
@@ -183,13 +181,13 @@ window.onload = function() {
                 tds[i].style.fontWeight = "bold";
             }
             else if(tds[i].innerHTML == "-1") {
-                tds[i].style.color = "#d40000";   
+                tds[i].style.color = "#d40000";
                 tds[i].style.fontWeight = "bold";
                 is_graph = false;
             }
         };
         if (parseInt(tds[1].innerHTML) > tds.length - 2){
-            tds[1].style.color = "#d40000";   
+            tds[1].style.color = "#d40000";
             tds[1].style.fontWeight = "bold";
             is_graph = false;
             //ugly but easier, do it correctly on refactoring
@@ -199,7 +197,7 @@ window.onload = function() {
 
     function table_result(is_graph) {
         if (is_graph){
-            var imgsrc = "img/accepted.png";    
+            var imgsrc = "img/accepted.png";
             var text = "graphic";
             var color = "#00ff00";
         }
@@ -209,13 +207,13 @@ window.onload = function() {
             var color = "#d40000";
         }
 
-    
+
         $("#table > tr:last").append($("<td id='td-result' width='80px' colspan='6' rowspan='6'><img style='padding-left: 10px;' width='30px' height='15px' id='result' src='"+imgsrc+"'/></td>"));
 
         var t = document.getElementById("table");
-        
+
         var divresult = document.getElementById('result');
-        
+
         var text_result = document.getElementById('text-result');
         text_result.innerHTML = text;
         text_result.style.color = color;
@@ -227,7 +225,7 @@ window.onload = function() {
     function getPosition(element) {
         var xPosition = 0;
         var yPosition = 0;
-      
+
         while(element) {
             xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
             yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
@@ -235,14 +233,16 @@ window.onload = function() {
         }
         return { x: xPosition, y: yPosition };
     }
+
     function show_text_result() {
         document.getElementById('text-result').style.visibility = "visible";
     }
+
     function hide_text_result() {
-        document.getElementById('text-result').style.visibility = "hidden";  
+        document.getElementById('text-result').style.visibility = "hidden";
     }
 
     function from_sequence_to_graph(sequence) {
-        // body...   
+        // body...
     }
 };
