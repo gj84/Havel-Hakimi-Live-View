@@ -197,18 +197,19 @@ window.onload = function() {
 
     function table_result(is_graph) {
         if (is_graph){
-            var imgsrc = "img/accepted.png";
+            var tagresult = "<span id='result' class='glyphicon glyphicon-ok'>";
             var text = "graphic";
             var color = "#00ff00";
         }
         else {
-            var imgsrc = "img/wrong.png";
+            var tagresult = "<span id='result' class='glyphicon glyphicon-remove'>";
             var text = "not graphic";
             var color = "#d40000";
         }
 
 
-        $("#table > tr:last").append($("<td id='td-result' width='80px' colspan='6' rowspan='6'><img style='padding-left: 10px;' width='30px' height='15px' id='result' src='"+imgsrc+"'/></td>"));
+        //$("#table > tr:last").append($("<td id='td-result' width='80px' colspan='6' rowspan='6'><img style='padding-left: 10px;' width='30px' height='15px' id='result' src='"+imgsrc+"'/></td>"));
+        $("#table > tr:last").append($("<td id='td-result' width='80px' colspan='6' rowspan='6'>" + tagresult +"</span></td>"));
 
         var t = document.getElementById("table");
 

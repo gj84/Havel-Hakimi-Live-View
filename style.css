@@ -65,6 +65,15 @@ input {
   margin-left: 30px;
   font-size: 20px;
 }
+
+.glyphicon-ok {
+    color: #00ff00;
+}
+
+.glyphicon-remove {
+    color: #d40000;
+}
+
 .centered {
   margin: 0 auto;
   width: 400px;
@@ -96,7 +105,7 @@ td {
 .fade {
   color: black;
   /*opacity: 1;
- 
+
   -webkit-transition: opacity 1s;
   transition: opacity 1s;*/
 }
@@ -111,7 +120,7 @@ td {
   width: 300px;
   position: absolute;
   right: 200px;
-  bottom: 10px; 
+  bottom: 10px;
   visibility: hidden;
 }
 
@@ -126,7 +135,7 @@ td {
 }
 
 .col-centered{
-    width: 100px; 
+    width: 100px;
     margin: auto auto;
     font-weight: bold;
 }
