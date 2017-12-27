@@ -242,7 +242,4 @@ window.onload = function() {
         document.getElementById('text-result').style.visibility = "hidden";
     }
 
-    function from_sequence_to_graph(sequence) {
-        // body...
-    }
 };
