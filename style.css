@@ -14,7 +14,7 @@ body {
   padding: 0px;
 }
 
-#left {
+#rigth {
   /*float: left;
   width: 50%;*/
   padding: 5px;
@@ -24,11 +24,6 @@ body {
   height: 85%;
   border: 1px solid gray;
   border-radius: 3px;
-}
-
-#right {
-  /*float: right;
-  width: 50%;*/
 }
 
 #form, table {
