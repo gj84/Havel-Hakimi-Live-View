@@ -8,7 +8,7 @@ function create_n_nodes(sequence) {
           degree: sequence[i],
           noden: i,
         }
-      };
+      };//
     el.push(node);
   }
   return el;
@@ -17,7 +17,7 @@ function create_n_nodes(sequence) {
 function create_edge(source, target){
       var edge = { // edge ab
       data: {
-        id: source+target,
+        id: source + target,
         source: source,
         target: target
         }
@@ -43,7 +43,7 @@ function distribute_edges(nodes,edges){
     var x = 1;
     while (nodes[0][1] > 0){
 
-      if (nodes[x][1] > 0) { 
+      if (nodes[x][1] > 0) {
         nodes[0][1] -= 1;
         nodes[x][1] -= 1;
         edges.push([nodes[0][0],nodes[x][0]]);
@@ -64,7 +64,7 @@ function create_graph(sequence){
   var nedges = sequence.reduce(function(a, b) {return a + b;});
 }
 
-function getRandomColor() {
+function random_color() {
     var letters = '79AC';
     var color = '#';
     for (var i = 0; i < 6; i++ ) {
@@ -81,10 +81,10 @@ function draw_graph(sequence) {
   };
 
   var nodes_degree = nodenames.map(function(el,i){return [nodenames[i],sequence[i]]});
-  
+
   nodes_degree.sort(function(i, j){return j[1]-i[1]});
   var edges = distribute_edges(nodes_degree,[]);
-  
+
 
   var el = create_n_nodes(sequence);
 
@@ -94,9 +94,9 @@ function draw_graph(sequence) {
     var cn2 = edges[i][1];
     el.push(create_edge(cn1,cn2));
   };
-  
+
   var cy = cytoscape({
-      container: $('#cy'), 
+      container: $('#cy'),
       elements: el,
 
 
@@ -107,18 +107,18 @@ function draw_graph(sequence) {
           'font-size': '.8em',
           'label': 'data(id)',
           'text-valign': "center",
-          'text-margin-x' : '3px', 
+          'text-margin-x' : '3px',
           'text-margin-y' : '3px',
           "width":"1.5em",
           "height":"1.5em",
           'color': '#151515',
           'border-width' : "1px",
-          'border-style' : "solid",  
+          'border-style' : "solid",
           'border-color' : "#111111",
           //'width':'label',
           //"height":"label",
-          "background-color": getRandomColor,
-          "events": "yes", 
+          "background-color": random_color,
+          "events": "yes",
         }
       },
 
@@ -133,7 +133,7 @@ function draw_graph(sequence) {
       }
     ],
 
-    layout: 
+    layout:
     {
       name: 'cose',
       ready: function(){},

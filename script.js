@@ -138,7 +138,7 @@ window.onload = function() {
 
 
 /*------------------- DRAWING ----------------------*/
-
+//
 
     function append_row(table_id, array) {
         // body...
