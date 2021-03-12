@@ -2,25 +2,25 @@ window.onload = function() {
 
     //run the example at start
     $("#sucession").parent().addClass("has-success");
-    var sucession = input_parser($("#sucession").val());
+    let sucession = input_parser($("#sucession").val());
     algorithm(sucession);
     setTimeout(draw_graph,2000,sucession);
 
 
-    var textbox = document.getElementById('sucession');
+    let textbox = document.getElementById('sucession');
     textbox.onkeypress = function (e) {
         //remove the class for valid and wrong succession
         $("#sucession").parent().removeClass("has-error");
         $("#sucession").parent().removeClass("has-success");
 
         if (e.keyCode == 13) {
-            var input = textbox.value;
+            let input = textbox.value;
             document.getElementById('table').innerHTML = "";
             document.getElementById('cy').innerHTML = "";
 
             if (valid_input(input)){
                 $("#sucession").parent().addClass("has-success");
-                var sucession = input_parser(input);
+                let sucession = input_parser(input);
                 algorithm(sucession);
                 if (sequence_graphical(sucession)){
                     setTimeout(draw_graph,2000,sucession);
@@ -34,16 +34,16 @@ window.onload = function() {
     };
 
     function valid_input(input) {
-        var re = new RegExp("^( *([0-9])+ *,?)+$");
+        let re = new RegExp("^( *([0-9])+ *,?)+$");
         return re.test(input);
     };
 
     function input_parser(input) {
         //returns integer array
-        var array = input.split(",");
-        var newArray = [];
+        let array = input.split(",");
+        let newArray = [];
 
-        for (var i = 0; i < array.length; i++) {
+        for (let i = 0; i < array.length; i++) {
             iel = array[i];
             iel = iel.replace(/ /g,"");
             newiel = parseInt(iel);
@@ -58,9 +58,9 @@ window.onload = function() {
         if (array[0] > array.length - 1){
             return true;
         }
-        var sc = true;
+        let sc = true;
 
-        for (var i = 0; i < array.length; i++) {
+        for (let i = 0; i < array.length; i++) {
             if (array[i] < 0) {
                 return true;
             }
@@ -73,7 +73,7 @@ window.onload = function() {
 
     function is_graphical(last_array) {
         // body...
-        for (var i = 0; i < last_array.length; i++) {
+        for (let i = 0; i < last_array.length; i++) {
             if (last_array[i] < 0){
                 return false;
             }
@@ -111,20 +111,20 @@ window.onload = function() {
         };
 
         //console.log(is_graphical(array));
-        var m = setTimeout(highlight_last_row, 1000);
+        let m = setTimeout(highlight_last_row, 1000);
     }
 
     function alg_operation(array) {
         //aplies the havel hakimi algorithm to array
-        var i0 = array[0];
-        var subs = array.slice(1,array.length);
+        let i0 = array[0];
+        let subs = array.slice(1,array.length);
 
-        for (var x = 0; x < i0; x++) {
+        for (let x = 0; x < i0; x++) {
             subs[x] -= 1;
         };
         //Delete NaNs
-        var seq = new Array();
-        for (var i = 0; i < subs.length; i++) {
+        let seq = new Array();
+        for (let i = 0; i < subs.length; i++) {
             if (!isNaN(subs[i])){
                 seq.push(subs[i]);
             };
@@ -142,24 +142,24 @@ window.onload = function() {
 
     function append_row(table_id, array) {
         // body...
-        var data = array.slice();
-        var table = document.getElementById(table_id);
+        let data = array.slice();
+        let table = document.getElementById(table_id);
 
-        var nd = 0;
-        var trows = table.rows;
+        let nd = 0;
+        let trows = table.rows;
         if (trows.length > 0) {
-            var nd = trows[0].getElementsByTagName('td').length - data.length;
+            let nd = trows[0].getElementsByTagName('td').length - data.length;
         }
-        for (var i = 0; i != nd; i++) {
+        for (let i = 0; i != nd; i++) {
             data.unshift("");
         };
         //console.log(data);
-        var row = document.createElement("TR");
-        var th = document.createElement("TH");
+        let row = document.createElement("TR");
+        let th = document.createElement("TH");
         th.innerHTML = trows.length + ": ";
         row.appendChild(th);
-        for (var i = 0; i < data.length; i++) {
-            var td = document.createElement("TD");
+        for (let i = 0; i < data.length; i++) {
+            let td = document.createElement("TD");
             td.innerHTML = data[i];
             row.appendChild(td);
         };
@@ -167,15 +167,15 @@ window.onload = function() {
     }
 
     function highlight_last_row() {
-        var table = document.getElementById("table");
-        var trows = table.getElementsByTagName("TR");
+        let table = document.getElementById("table");
+        let trows = table.getElementsByTagName("TR");
 
-        var tds = trows[trows.length-1].childNodes;
+        let tds = trows[trows.length-1].childNodes;
 
         //console.log(tds);
-        var is_graph = true;
+        let is_graph = true;
 
-        for (var i = 0; i < tds.length; i++) {
+        for (let i = 0; i < tds.length; i++) {
             if (tds[i].innerHTML == "0"){
                 tds[i].style.color = "#00ff00";
                 tds[i].style.fontWeight = "bold";
@@ -192,30 +192,30 @@ window.onload = function() {
             is_graph = false;
             //ugly but easier, do it correctly on refactoring
         }
-        var to = setTimeout(table_result,1200,is_graph);
+        let to = setTimeout(table_result,1200,is_graph);
     }
 
     function table_result(is_graph) {
         if (is_graph){
-            var tagresult = "<span id='result' class='glyphicon glyphicon-ok'>";
-            var text = "graphic";
-            var color = "#00ff00";
+            let tagresult = "<span id='result' class='glyphicon glyphicon-ok'>";
+            let text = "graphic";
+            let color = "#00ff00";
         }
         else {
-            var tagresult = "<span id='result' class='glyphicon glyphicon-remove'>";
-            var text = "not graphic";
-            var color = "#d40000";
+            let tagresult = "<span id='result' class='glyphicon glyphicon-remove'>";
+            let text = "not graphic";
+            let color = "#d40000";
         }
 
 
         //$("#table > tr:last").append($("<td id='td-result' width='80px' colspan='6' rowspan='6'><img style='padding-left: 10px;' width='30px' height='15px' id='result' src='"+imgsrc+"'/></td>"));
         $("#table > tr:last").append($("<td id='td-result' width='80px' colspan='6' rowspan='6'>" + tagresult +"</span></td>"));
 
-        var t = document.getElementById("table");
+        let t = document.getElementById("table");
 
-        var divresult = document.getElementById('result');
+        let divresult = document.getElementById('result');
 
-        var text_result = document.getElementById('text-result');
+        let text_result = document.getElementById('text-result');
         text_result.innerHTML = text;
         text_result.style.color = color;
 
@@ -224,8 +224,8 @@ window.onload = function() {
     }
 
     function getPosition(element) {
-        var xPosition = 0;
-        var yPosition = 0;
+        let xPosition = 0;
+        let yPosition = 0;
 
         while(element) {
             xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);

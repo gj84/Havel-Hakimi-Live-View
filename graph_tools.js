@@ -1,8 +1,8 @@
 function create_n_nodes(sequence) {
-  var el = [];
-  var nodes = sequence.length;
-  for (var i = 0; i < sequence.length; i++) {
-    var node = { // node a
+  let el = [];
+  let nodes = sequence.length;
+  for (let i = 0; i < sequence.length; i++) {
+    let node = { // node a
         data: {
           id: "n"+(i+1).toString(),
           degree: sequence[i],
@@ -15,7 +15,7 @@ function create_n_nodes(sequence) {
 }
 
 function create_edge(source, target){
-      var edge = { // edge ab
+      let edge = { // edge ab
       data: {
         id: source + target,
         source: source,
@@ -26,8 +26,8 @@ function create_edge(source, target){
 }
 
 function get_nodes_keys(el){
-    var nodes_id = [];
-    for (var i = 0; i < el.length; i++){
+    let nodes_id = [];
+    for (let i = 0; i < el.length; i++){
         nodes_id.push(el[i]["data"]["id"]);
     }
     return nodes_id;
@@ -40,7 +40,7 @@ function distribute_edges(nodes,edges){
   }
   else {
     nodes.sort(function(i, j){return j[1]-i[1]});
-    var x = 1;
+    let x = 1;
     while (nodes[0][1] > 0){
 
       if (nodes[x][1] > 0) {
@@ -56,18 +56,18 @@ function distribute_edges(nodes,edges){
 }
 
 function create_graph(sequence){
-  var n = sequence.length;
-  var names = [];
-  for (var i = 0; i < n; i++) {
+  let n = sequence.length;
+  let names = [];
+  for (let i = 0; i < n; i++) {
     names.push(["n"+(i+1),sequence[i]]);
   };
-  var nedges = sequence.reduce(function(a, b) {return a + b;});
+  let nedges = sequence.reduce(function(a, b) {return a + b;});
 }
 
 function random_color() {
-    var letters = '79AC';
-    var color = '#';
-    for (var i = 0; i < 6; i++ ) {
+    let letters = '79AC';
+    let color = '#';
+    for (let i = 0; i < 6; i++ ) {
         color += letters[Math.floor(Math.random() * 4)];
     }
     return color;
@@ -75,27 +75,27 @@ function random_color() {
 
 function draw_graph(sequence) {
   //console.log(create_graph(sequence));
-  var nodenames = [];
-  for (var i = 0; i < sequence.length; i++) {
+  let nodenames = [];
+  for (let i = 0; i < sequence.length; i++) {
     nodenames.push("n"+(i+1));
   };
 
-  var nodes_degree = nodenames.map(function(el,i){return [nodenames[i],sequence[i]]});
+  let nodes_degree = nodenames.map(function(el,i){return [nodenames[i],sequence[i]]});
 
   nodes_degree.sort(function(i, j){return j[1]-i[1]});
-  var edges = distribute_edges(nodes_degree,[]);
+  let edges = distribute_edges(nodes_degree,[]);
 
 
-  var el = create_n_nodes(sequence);
+  let el = create_n_nodes(sequence);
 
-  var nodeskeys = get_nodes_keys(el);
-  for (var i = 0; i < edges.length; i++) {
-    var cn1 = edges[i][0];
-    var cn2 = edges[i][1];
+  let nodeskeys = get_nodes_keys(el);
+  for (let i = 0; i < edges.length; i++) {
+    let cn1 = edges[i][0];
+    let cn2 = edges[i][1];
     el.push(create_edge(cn1,cn2));
   };
 
-  var cy = cytoscape({
+  let cy = cytoscape({
       container: $('#cy'),
       elements: el,
 
@@ -161,8 +161,8 @@ function draw_graph(sequence) {
 
   cy.on('mouseover', 'node', function(event) {
 
-      var node = event.cyTarget;
-      var noden = node.data("noden");
+      let node = event.cyTarget;
+      let noden = node.data("noden");
       node.connectedEdges().css("line-color","#e6e600");
 
       $("#table > tr:first > td:nth-child("+(noden+2)+")").addClass("tdhighlighted");
@@ -188,8 +188,8 @@ function draw_graph(sequence) {
   });
 
   cy.on('mouseout', 'node', function(event) {
-    var node = event.cyTarget;
-    var noden = node.data("noden");
+    let node = event.cyTarget;
+    let noden = node.data("noden");
     $("#table > tr:first > td:nth-child("+(noden+2)+")").removeClass("tdhighlighted");
     node.connectedEdges().css('line-color','#ccd9ff');
   });
